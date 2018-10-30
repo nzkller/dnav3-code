@@ -117,7 +117,7 @@ def dnac_open_session(dnac_session,
 def dnac_get_device_count(dnac_session, dnac_host, dnac_headers):
     """DNAC Network Device Count"""
     tmp_url = 'https://%s/api/v1/network-device/count' % dnac_host
-    r = dnac_session.MISSION(tmp_url, verify=False, headers=dnac_headers)
+    r = dnac_session.get(tmp_url, verify=False, headers=dnac_headers)
     r.raise_for_status()
     # print('DNAC Response Body: ' + r.text)
     return r.json()['response']
@@ -127,7 +127,7 @@ def dnac_get_device_count(dnac_session, dnac_host, dnac_headers):
 # MISSION TODO 2: Complete the URL to retrieve the Network Devices
 def dnac_get_devices(dnac_session, dnac_host, dnac_headers):
     """DNAC Network Devices"""
-    tmp_url = 'https://%s/api/v1/MISSION' % dnac_host
+    tmp_url = 'https://%s/api/v1/network-device' % dnac_host
     r = dnac_session.get(tmp_url, verify=False, headers=dnac_headers)
     r.raise_for_status()
     # print('DNAC Response Body: ' + r.text)
@@ -148,7 +148,7 @@ def dnac_get_host_count(dnac_session, dnac_host, dnac_headers):
 def dnac_get_modules(dnac_session, dnac_host, dnac_headers, device_id):
     """DNAC Modules of a Network Device"""
     tmp_url = 'https://%s/api/v1/' % dnac_host
-    tmp_url = tmp_url + 'network-device/MISSION?MISSION=%s' % device_id
+    tmp_url = tmp_url + 'network-device/module?deviceId=%s' % device_id
 
     r = dnac_session.get(tmp_url,
                          verify=False,
@@ -164,7 +164,7 @@ def dnac_get_modules(dnac_session, dnac_host, dnac_headers, device_id):
 #                 modules for a device
 def dnac_get_module_count(dnac_session, dnac_host, dnac_headers, device_id):
     """DNAC Module Count of a Network Device"""
-    tmp_url = 'https://%s/api/v1/network-device/module/MISSION' % dnac_host
+    tmp_url = 'https://%s/api/v1/network-device/module/count' % dnac_host
     tmp_params = {'deviceId': device_id}
 
     r = dnac_session.get(tmp_url,
