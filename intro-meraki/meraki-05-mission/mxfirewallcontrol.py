@@ -105,7 +105,7 @@ def getorglist(p_apikey):
     try:
         # MISSION TODO
         r = requests.get(
-            "MISSION: REPLACE WITH ORGANIZATIONS API CALL",
+            "https://api.meraki.com/api/v0/organizations",
             headers={
                 "X-Cisco-Meraki-API-Key": p_apikey,
                 "Content-Type": "application/json"
@@ -134,8 +134,7 @@ def getnwlist(p_apikey, p_orgid):
     try:
         # MISSION TODO
         r = requests.get(
-            "MISSION: REPLACE WITH NETWORKS API CALL (in place of \
-            Organization ID put %s)"
+            "https://api.meraki.com/api/v0/organizations/%s/networks"
             % (p_orgid),
             headers={
                 "X-Cisco-Meraki-API-Key": p_apikey,
@@ -163,8 +162,7 @@ def readmxfwruleset(p_apikey, p_nwid):
     try:
         # MISSION TODO
         r = requests.get(
-            "MISSION: REPLACE WITH firewallrules API CALL (in place of \
-            network ID put %s)"
+            "https://api.meraki.com/api/v0/networks/%s/l3FirewallRules"
             % (p_nwid),
             headers={
                 "X-Cisco-Meraki-API-Key": p_apikey,
